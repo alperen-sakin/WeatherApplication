@@ -6,5 +6,6 @@ data class Weather(
     val cloudiness: Int,
     val humidity: Int,
     val uvIndex: Double,
-    val isDay: Int
+    val isDay: Int,
+    val weatherTypeCode: Int
 )
