@@ -102,7 +102,7 @@ fun WeatherDetailsScreenPreview() {
             cloudiness = 2,
             humidity = 55,
             uvIndex = 1.49,
-            isDay = 0,
+            isDay = 1,
             weatherTypeCode = 1000
         )
     )

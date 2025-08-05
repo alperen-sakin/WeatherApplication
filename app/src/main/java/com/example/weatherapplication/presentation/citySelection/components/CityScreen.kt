@@ -1,5 +1,6 @@
 package com.example.weatherapplication.presentation.citySelection.components
 import CityBox
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.weatherapplication.R
 import com.example.weatherapplication.domain.model.City
 
@@ -58,6 +61,7 @@ val cities = listOf(
 
 @Composable
 fun CityScreen(
+    navController: NavHostController,
     cities: List<City>
 ) {
     LazyVerticalGrid(
@@ -70,7 +74,10 @@ fun CityScreen(
     ) {
         items(cities) { city ->
             CityBox(
-                cityImage = city.cityImage
+                cityImage = city.cityImage,
+                modifier = Modifier.clickable {
+                    navController.navigate("weather_details_screen/${city.name}")
+                }
             )
         }
     }
@@ -79,7 +86,10 @@ fun CityScreen(
 @Preview
 @Composable
 fun CityScreenPreview() {
+    val navController = rememberNavController()
     CityScreen(
-        cities = cities
+
+        cities = cities,
+        navController = navController
     )
 }
