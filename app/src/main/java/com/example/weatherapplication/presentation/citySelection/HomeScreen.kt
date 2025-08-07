@@ -21,7 +21,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.weatherapplication.R
 import com.example.weatherapplication.presentation.citySelection.components.CityScreen
-import com.example.weatherapplication.presentation.citySelection.components.cities
 
 @Composable
 fun HomeScreen(
@@ -58,7 +57,6 @@ fun HomeScreen(
                     .padding(innerPadding)
             ) {
                 CityScreen(
-                    cities = cities,
                     navController = navController
                 )
             }

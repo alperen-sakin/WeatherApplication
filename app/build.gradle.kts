@@ -32,12 +32,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
-        compilerOptions { // Yeni blok
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_18) // Yeni kullanım
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
     }
     buildFeatures {
@@ -64,21 +64,23 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // Navigasyon
     implementation(libs.androidx.navigation.compose)
-
     implementation(libs.accompanist.navigation.animation)
 
+  // Moshi ve Retrofit
+    implementation(libs.converter.moshi)
+    implementation(libs.moshi.v1151)
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen.v1151)
 
-    detektPlugins(libs.detekt)
-
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-
+    // Hilt ve Compose
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    implementation(libs.moshi)
-    ksp(libs.moshi.kotlin.codegen)
+    detektPlugins(libs.detekt)
 
 
 }

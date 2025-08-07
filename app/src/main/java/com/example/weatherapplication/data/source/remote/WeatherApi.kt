@@ -7,7 +7,7 @@ interface WeatherApi {
 
     @GET("v1/current.json")
     suspend fun getWeatherData(
-        @Query("key") key: Int,
+        @Query("key") key: String,
         @Query("q") cityName: String
     ): WeatherDataResultDto
 }

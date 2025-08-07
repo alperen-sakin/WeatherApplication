@@ -11,58 +11,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.weatherapplication.R
-import com.example.weatherapplication.domain.model.City
-
-val cities = listOf(
-    City(
-        cityImage = R.drawable.agra,
-        name = "Agra"
-    ),
-    City(
-        cityImage = R.drawable.barcelona,
-        name = "Barcelona"
-    ),
-    City(
-        cityImage = R.drawable.beijing,
-        name = "Beijing"
-    ),
-    City(
-        cityImage = R.drawable.sydney,
-        name = "sydney"
-    ),
-    City(
-        cityImage = R.drawable.paris,
-        name = "Paris"
-    ),
-    City(
-        cityImage = R.drawable.new_york,
-        name = "New york"
-    ),
-    City(
-        cityImage = R.drawable.london,
-        name = "London"
-    ),
-    City(
-        cityImage = R.drawable.rio_de_janeiro,
-        name = "Rio De Janeiro"
-    ),
-    City(
-        cityImage = R.drawable.moscow,
-        name = "Moskow"
-    ),
-    City(
-        cityImage = R.drawable.rome,
-        name = "Rome"
-    ),
-)
+import com.example.weatherapplication.presentation.citySelection.viewModel.CitySelectionViewModel
 
 @Composable
 fun CityScreen(
     navController: NavHostController,
-    cities: List<City>
+    viewModel: CitySelectionViewModel = hiltViewModel()
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 146.dp),
@@ -72,7 +29,7 @@ fun CityScreen(
         horizontalArrangement = Arrangement.spacedBy(26.dp)
 
     ) {
-        items(cities) { city ->
+        items(viewModel.cities) { city ->
             CityBox(
                 cityImage = city.cityImage,
                 modifier = Modifier.clickable {
@@ -89,7 +46,6 @@ fun CityScreenPreview() {
     val navController = rememberNavController()
     CityScreen(
 
-        cities = cities,
         navController = navController
     )
 }
